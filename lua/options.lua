@@ -54,6 +54,24 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+-- vim.opt.scrolloff = 10
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=4 sts=4 sw=4 et
+
+-- Syncing Windows Clipboard when using WSL
+
+--[[ if vim.fn.has 'wsl' == 1 then
+  vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+      ['+'] = 'clip.exe',
+    },
+    paste = {
+      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+  }
+end ]]
 
 -- vim: ts=2 sts=2 sw=2 et
